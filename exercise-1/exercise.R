@@ -8,7 +8,8 @@ library("jsonlite")
 ## Then send GET() request to fetch the data, then extract the answer to the question
 
 # For what years does the API have statistical data?
-response <- GET("http://data.unhcr.org/stats/time_series_all_years")
+response <- GET("http://data.unhcr.org/api/stats/time_series_all_years.json")
+
 
 # What is the "country code" for the "Syrian Arab Republic"?
 
