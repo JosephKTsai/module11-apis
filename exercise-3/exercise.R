@@ -54,30 +54,35 @@ is.data.frame(poke.data)
 # JSON object. How would you call moves? Print that value.
 is.data.frame(poke.data$moves)
 poke.data$moves
+View(poke.data$moves)
 
 # Food for thought
 # What do you think is the diffrence between the two outputs above? Why are they diffrent?
-# The difference is that poke.data is a list that can hold data frames as its values
+###### The difference is that poke.data is a list that can hold data frames as its values
 
 # Create a data frame named poke.moves with the moves. be sure to use the head function to only get the
 # first few values. Feel free to use view to look at the dataframe.
-
+poke.moves <- head(poke.data$moves)
 
 # Flatten the poke.moves data frame
-
+poke.moves <- flatten(poke.moves)
 
 # Use the colnames function to learn what columns are in your poke.moves data frame. Print this.
-
+colnames(poke.moves)
 
 # Using dplyr remove all columns except the one with your move names. 
-
+poke.moves <- select(poke.moves, move.name)
 
 # Using dplyr add one coloumn that indicates the type of the move (feel free to guess!) and one column that 
-# indicates on a scale of 1-5 how much you like that move, with 1 being not at all and 5 being it's my favorite. 
-
+# indicates on a scale of 1-5 how much you like that move, with 1 being not at all and 5 being it's my favorite.
+type_of_move <- c("cool", "really cool", "oh heck yeah!", "Dang, that's really cool", "Oh my gosh, that's cool", 
+                 "Dang Daniel, that's a cool move.")
+how_much_i_dig_it <- c(5,4,4,2,3,1)
+poke.moves <- mutate(poke.moves, type_of_move, how_much_i_dig_it)
 
 # Using dplyr order the moves by rank. Higher ranking moves should be on the top of the dataframe. 
-
+poke.moves <- arrange(poke.moves, desc(how_much_i_dig_it))
+print(poke.moves)
 
 # Bonus 1
 # Download a sprite of your pokemon. Be sure to download it to your png folder. Name the downloaded file using
